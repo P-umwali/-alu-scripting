@@ -4,6 +4,7 @@
 """
 import requests
 
+
 def recurse(subreddit, hot_list=[], after=None):
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     headers = { 'User-Agent': 'Mozilla/5.0'}
@@ -23,7 +24,7 @@ def recurse(subreddit, hot_list=[], after=None):
                     hot_list.append(child.get('data').get('title'))
                     after = data.get('after')
                     if after is not None:
-                        return rescurse(subreddit, hot_list, after)
+                        return recurse(subreddit, hot_list, after)
                     else:
                         return hot_list
                 else:
